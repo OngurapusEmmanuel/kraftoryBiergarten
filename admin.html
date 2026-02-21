@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kraftory Admin</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .admin-card { background: white; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 1.5rem; }
+    .admin-grid { display: grid; gap: 1rem; }
+    .slot-row { display: grid; grid-template-columns: 1fr 1fr auto auto; gap: 0.5rem; align-items: center; }
+    .gallery-preview { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.5rem; }
+    .gallery-preview img { width: 100%; height: 100px; object-fit: cover; border-radius: 0.5rem; }
+    .btn-small { padding: 0.5rem 1rem; font-size: 0.9rem; }
+  </style>
+</head>
+<body style="background:#f4f4f4; padding:2rem; font-family:'Lato',sans-serif;">
+  <div class="container" style="max-width:900px;">
+    <h1 style="text-align:center; color:var(--emerald); margin-bottom:2rem;">Kraftory Admin Dashboard</h1>
+
+    <div class="admin-card">
+      <h3> Welcome Offer</h3>
+      <input type="text" id="offer-title" placeholder="Title" class="form-input">
+      <textarea id="offer-text" placeholder="Offer text" class="form-input" style="height:80px;"></textarea>
+      <label><input type="checkbox" id="offer-active"> Active</label>
+    </div>
+
+    <div class="admin-card">
+      <h3>Padel Slots (Today)</h3>
+      <div id="slots-container" class="admin-grid"></div>
+      <button class="btn btn-primary btn-small" onclick="addSlot()">+ Add Slot</button>
+    </div>
+
+    <div class="admin-card">
+      <h3>Gallery Images</h3>
+      <input type="file" id="gallery-upload" accept="image/*" multiple class="form-input">
+      <div id="gallery-preview" class="gallery-preview"></div>
+    </div>
+
+    <button class="btn btn-primary" style="width:100%; padding:1rem; font-size:1.1rem;" onclick="saveConfig()">SAVE ALL CHANGES</button>
+    <p id="status" style="text-align:center; margin-top:1rem; color:green; font-weight:600;"></p>
+  </div>
+
+  <script src="/admin.js"></script>
+</body>
+</html>

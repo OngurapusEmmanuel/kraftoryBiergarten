@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kraftory Biergarten — Nairobi’s premier destination for exquisite continental cuisine, premium padel courts, and a vibrant beer garden. Crafted for the cultured.">
+    <meta name="keywords" content="biergarten, continental cuisine, Nairobi dining, padel courts, craft beer, restaurant, fine dining">
+    <title>Kraftory Biergarten Crafted for the Cultured</title>
+
+    <!-- Preload Critical Images -->
+    <link rel="preload" href="/assets/logo.png" as="image">
+    <link rel="preload" href="/assets/hero-1.jpg" as="image">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/styles.css">
+    <script type="text/javascript" src="https://d183cnjuwjcs99.cloudfront.net/assets/widget/widget-iframe.min.js" async></script>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" aria-label="Main Navigation">
+        <div class="container">
+            <nav class="nav" role="navigation" aria-label="Primary">
+                <!-- Logo -->
+                <a href="/" class="logo" aria-label="Kraftory Biergarten Home">
+                    <img src="/assets/logo.png" alt="Kraftory Biergarten Logo" class="logo-img" loading="lazy" width="180" height="60">
+                </a>
+
+                <!-- Navigation -->
+                <ul class="nav-links" id="nav-links" role="list">
+                    <li><a href="#home" class="nav-link active" aria-current="page">Home</a></li>
+                    <li><a href="#reservations" class="nav-link">Reservations</a></li>
+                    <li><a href="https://playtomic.com/clubs/kraftory-biergarten-padel" target="_blank" rel="noopener" class="nav-link">Padel</a></li>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+
+                <!-- Social Icons -->
+                <div class="social-icons" aria-label="Follow us">
+                    <a href="https://www.instagram.com/kraftorybiergarten/" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://wa.me/254113555777" target="_blank" rel="noopener" class="social-icon" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-menu-button" aria-label="Open menu" aria-controls="nav-links" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Welcome Offer Popup -->
+    <div id="welcome-popup" class="popup" hidden>
+        <div class="popup-content">
+            <button class="popup-close" aria-label="Close">×</button>
+            <h3 id="offer-title">Welcome!</h3>
+            <p id="offer-text">Loading offer...</p>
+            <button class="btn btn-primary" onclick="closePopup()">Claim Now</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- HERO SECTION -->
+        <section id="home" class="hero" aria-label="Welcome to Kraftory Biergarten">
+            <div class="hero-bg"></div>
+
+            <!-- Hero Gallery -->
+            <div class="hero-gallery">
+                <img src="/assets/hero-1.jpg" alt="Elegant dining at Kraftory" class="hero-img active" loading="lazy">
+                <img src="/assets/hero-2.jpg" alt="Premium padel courts" class="hero-img" loading="lazy">
+                <img src="/assets/hero-3.jpg" alt="Vibrant beer garden" class="hero-img" loading="lazy">
+            </div>
+
+            <div class="hero-content container">
+                <h1 class="hero-title" id="typewriter">
+                    <span class="typewriter-text">Kraftory Biergarten</span>
+                    <!-- <span class="cursor">|</span> -->
+                </h1>
+                <p class="hero-subtitle">A Modern Biergarten With An Old Soul</p>
+                <div class="hero-actions">
+                    <a href="https://eatapp.co/reserve/kraftory-biergarten-red-hill-rd-nairobi?source=iframe" onclick="eatapp_ShowWidget.apply(this, arguments)" class="btn btn-primary">
+                        <i class="fas fa-calendar-alt"></i> Reserve Now
+                    </a>
+
+                    <a href="https://kraftory-biergarten.ubuntu.click/" target="_blank" rel="noopener" class="btn btn-secondary">
+                        <i class="fas fa-utensils"></i> View Menu
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESERVATIONS -->
+        <section id="reservations" class="section" aria-labelledby="reservations-title">
+            <div class="container">
+                <h2 id="reservations-title" class="section-title">Reserve Your Experience</h2>
+                <div class="grid">
+
+                    <!-- Table -->
+                    <article class="card reservation-card">
+                        <h3>Table Reservation</h3>
+                        <p>Secure your dining experience.</p>
+                        <a href="https://eatapp.co/reserve/kraftory-biergarten-red-hill-rd-nairobi" target="_parent" rel="noopener" class="btn btn-primary">
+                            <i class="fas fa-calendar-alt"></i> Reserve Table
+                        </a>
+                    </article>
+
+                    <!-- Padel -->
+                    <article class="card reservation-card padel-card">
+                        <div class="padel-header">
+                            <h3>Kraftory Padel <span class="voucher-tag">GET KSh 1,000 VOUCHER PER HOUR</span></h3>
+                            <p class="padel-location">Redhill Road, Nairobi</p>
+                        </div>
+
+                        <a href="https://playtomic.com/clubs/kraftory-biergarten-padel" target="_blank" rel="noopener" class="btn btn-primary">
+                            <i class="fas fa-trophy"></i> Book Court
+                        </a>
+
+                        <details class="padel-details">
+                            <summary>All about Kraftory Padel</summary>
+                            <p>
+                                Kraftory Biergarten and Padel is the perfect place to play, relax, and connect! Get <strong>KSh 1,000 F&B voucher</strong> for 1-hour bookings, or <strong>KSh 1,500</strong> for 1.5-hour bookings. Redeemable at the Biergarten
+                                on food & drinks.
+                            </p>
+                            <p><strong>Location:</strong> Redhill Road, Nairobi</p>
+
+                            <h4>Amenities</h4>
+                            <ul class="amenities">
+                                <li>Disabled Access</li>
+                                <li>Equipment Rental</li>
+                                <li>Free Parking</li>
+                                <li>Store</li>
+                                <li>Restaurant</li>
+                                <li>Cafeteria</li>
+                                <li>Snack Bar</li>
+                                <li>Changing Room</li>
+                                <li>Lockers</li>
+                                <li>WiFi</li>
+                            </ul>
+
+                            <h4>Opening Hours</h4>
+                            <p><strong>Mon–Sun & Holidays:</strong> 06:00 – 23:00</p>
+                        </details>
+                    </article>
+
+                    <!-- Event -->
+                    <article class="card reservation-card">
+                        <h3>Host an Event</h3>
+                        <p>From beer tastings to private celebrations.</p>
+                        <a href="https://wa.me/254113555777?text=I’d%20like%20to%20book%20an%20event" target="_blank" rel="noopener" class="btn btn-icon">
+                            <i class="fab fa-whatsapp"></i> Message Us
+                        </a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT US (was "Crafted for the Cultured") -->
+        <section id="about" class="section" aria-labelledby="about-title">
+            <div class="container">
+                <h2 id="about-title" class="section-title">About Us</h2>
+                <p class="about-intro">
+                    Kraftory Biergarten is where refined leisure finds its home. Designed for the cultured, our space blends the art of dining and drinking with the elegance of sport.
+                </p>
+
+                <div class="grid offerings-grid">
+                    <article class="card offering-card">
+                        <img src="/assets/offerings/cuisine.jpg" alt="Continental cuisine" class="offering-img" loading="lazy">
+                        <h3>Continental Cuisine</h3>
+                        <p>Curated dishes from global traditions, crafted with passion and precision.</p>
+                    </article>
+
+                    <article class="card offering-card">
+                        <>
+                            <img src="/assets/offerings/padel.jpg" alt="Padel courts" class="offering-img" loading="lazy">
+                            <h3>Premium Padel</h3>
+                            <p>State-of-the-art courts for competitive and casual play in a stylish setting.</p>
+                    </article>
+
+                    <article class="card offering-card">
+                        <img src="/assets/offerings/beer-garden.jpg" alt="Beer garden" class="offering-img" loading="lazy">
+                        <h3>Vibrant Beer Garden</h3>
+                        <p>Artisanal brews, lively ambiance, and unforgettable moments under the stars.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="section contact" aria-labelledby="contact-title">
+            <div class="container">
+                <h2 id="contact-title" class="section-title">Connect With Us</h2>
+                <div class="contact-info">
+                    <p><strong>Email:</strong> <a href="mailto:info@kraftorybiergarten.com">info@kraftorybiergarten.com</a></p>
+                    <p><strong>Phone:</strong> <a href="tel:+254113555777">+254 113 555 777</a></p>
+                    <p><strong>Address:</strong> Off Redhill Road, Next to Commission of University Education, Nairobi, Kenya</p>
+                </div>
+
+                <div class="social-links" aria-label="Social media">
+                    <a href="https://twitter.com/kraftorybier" target="_blank" rel="noopener" aria-label="Twitter">Twitter</a>
+                    <a href="https://www.instagram.com/kraftorybiergarten/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+                    <a href="https://g.page/kraftorybiergarten" target="_blank" rel="noopener" aria-label="Google Reviews">Google</a>
+                </div>
+
+                <div class="map-container">
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.5365001510845!2d36.79517577395949!3d-1.2258177987624916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f172fa40abbaf%3A0xe34087d17f1fea13!2sKraftory%20Biergarten!5e1!3m2!1sen!2ske!4v1754983508785!5m2!1sen!2ske"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Kraftory Biergarten Location">
+          </iframe>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer" aria-label="Site footer">
+        <div class="container">
+            <p>&copy; <span id="year">2025</span> Kraftory Biergarten. All rights reserved.</p>
+            <p class="footer-links">
+                <a href="/privacy">Privacy Policy</a> |
+                <a href="/terms">Terms of Service</a> |
+                <a href="/admin.html" target="_blank">Admin</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/script.js"></script>
+</body>
+
+</html>

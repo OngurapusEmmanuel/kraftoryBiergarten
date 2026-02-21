@@ -1,0 +1,14 @@
+/ (root)
+├── index.html
+├── styles.css
+├── script.js
+└── assets/
+    ├── logo.png
+    ├── favicon.ico
+    ├── hero-1.jpg
+    ├── hero-2.jpg
+    ├── hero-3.jpg
+    └── offerings/
+        ├── cuisine.jpg
+        ├── padel.jpg
+        └── beer-garden.jpg
