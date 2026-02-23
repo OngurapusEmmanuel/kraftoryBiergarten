@@ -1,0 +1,63 @@
+/* =========================
+VOUCHER SCROLL TICKER
+========================= */
+
+.voucher-ticker {
+
+  width: 100%;
+
+  overflow: hidden;
+
+  background: linear-gradient(
+    90deg,
+    #0f0f0f,
+    #1a1a1a,
+    #0f0f0f
+  );
+
+  border-top: 2px solid var(--craft-amber);
+
+  border-bottom: 2px solid var(--craft-amber);
+
+  margin-top: 30px;
+
+}
+
+
+.voucher-track {
+
+  display: inline-block;
+
+  white-space: nowrap;
+
+  padding: 15px 0;
+
+  font-size: 1.1rem;
+
+  color: var(--craft-amber);
+
+  font-weight: 600;
+  text-shadow:
+
+0 0 10px rgba(255,180,0,0.5);
+
+  animation: scrollTicker 40s linear infinite;
+
+}
+
+
+@keyframes scrollTicker {
+
+  from {
+
+    transform: translateX(100%);
+
+  }
+
+  to {
+
+    transform: translateX(-100%);
+
+  }
+
+}

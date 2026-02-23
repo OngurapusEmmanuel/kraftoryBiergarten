@@ -1,0 +1,87 @@
+.card {
+
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 16px;
+
+  transition: 0.4s;
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+/* IMAGE MODE */
+
+.card-with-image {
+
+  height: 320px;
+
+  background-size: cover;
+
+  background-position: center;
+
+  padding: 0;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  color: white;
+
+}
+.card-with-image:hover {
+
+transform: scale(1.05);
+
+}
+
+
+.card-overlay {
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.2)
+  );
+
+}
+
+
+.card-content {
+
+  position: relative;
+
+  padding: 20px;
+
+  z-index: 2;
+
+}
+
+
+/* Hover effect */
+
+.card:hover {
+
+  transform: translateY(-10px);
+
+}
+
+
+/* Icon */
+
+.icon-large {
+
+  font-size: 40px;
+
+  margin-bottom: 10px;
+
+}

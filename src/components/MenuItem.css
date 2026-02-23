@@ -1,0 +1,76 @@
+.menu-item {
+
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 16px;
+
+  transition: 0.4s;
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+/* IMAGE MODE */
+
+.menu-item-image {
+
+  height: 320px;
+
+  background-size: cover;
+
+  background-position: center;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  color: white;
+
+}
+
+
+.menu-overlay {
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.9),
+    rgba(0,0,0,0.2)
+  );
+
+}
+
+
+.menu-content {
+
+  position: relative;
+
+  padding: 20px;
+
+  z-index: 2;
+
+}
+
+
+.price {
+
+  font-weight: bold;
+
+  font-size: 18px;
+
+}
+
+
+.menu-item:hover {
+
+  transform: scale(1.05);
+
+}

@@ -1,0 +1,48 @@
+/* Kraftory Biergarten - App Styles */
+
+* {
+  scroll-behavior: smooth;
+}
+
+/* Ensure flex layout for main app */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* Utility helpers */
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-auto {
+  height: auto;
+}
+
+.opacity-90 {
+  opacity: 0.9;
+}
+
+.opacity-70 {
+  opacity: 0.7;
+}
+
+/* Link styling */
+a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:active {
+  transform: scale(0.98);
+}
+
