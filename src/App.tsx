@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css'
-
+// import Layout from "./components/Layout";
+import Preloader from './components/VideoPreloader';
+import { useState, useEffect } from 'react';
 // Pages
 import Home from './pages/Home';
 import Menu from './pages/Menu';
@@ -12,7 +14,23 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Events from './pages/Events';
 
-function App() {
+export default function App() {
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 6000);
+
+    return () => clearTimeout(timer);
+
+  }, []);
+
+  if (loading) {
+    return <Preloader />;
+  }
   return (
     <Router>
       <Routes>
@@ -30,4 +48,4 @@ function App() {
   );
 }
 
-export default App
+// export default App

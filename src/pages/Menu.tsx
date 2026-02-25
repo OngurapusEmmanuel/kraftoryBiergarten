@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import Layout from '../layouts/Layout';
 import Hero from '../components/Hero';
 import Section from '../components/Section';
+import Tabs from '../components/Tabs';
 import MenuItem from '../components/MenuItem';
 import { useSEO } from '../utils/useSEO';
 
 export default function Menu() {
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     useSEO({
       title: 'Menu',
       description: 'Browse Kraftory Biergarten\'s full menu featuring craft beer, German-inspired cuisine, artisan bakery items, signature cocktails, and more.',
