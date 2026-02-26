@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css'
-// import Layout from "./components/Layout";
+import './App.css';
 import Preloader from './components/VideoPreloader';
-import { useState, useEffect } from 'react';
+import ScrollToTop from './components/ScrollToTop';
+import { useState } from 'react';
 // Pages
 import Home from './pages/Home';
 import Menu from './pages/Menu';
@@ -13,26 +13,20 @@ import Gallery from './pages/Gallery';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Events from './pages/Events';
+import NotFound from './pages/NotFound';
 
 export default function App() {
-
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 6000);
-
-    return () => clearTimeout(timer);
-
-  }, []);
-
+  // BUG FIX: Pass onFinish so the preloader can signal when the video ends,
+  // rather than relying on a hardcoded 6-second timer.
   if (loading) {
-    return <Preloader />;
+    return <Preloader onFinish={() => setLoading(false)} />;
   }
+
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/menu" element={<Menu />} />
@@ -43,9 +37,9 @@ export default function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        {/* 404 catch-all */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
 }
-
-// export default App

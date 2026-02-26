@@ -9,19 +9,21 @@ interface GalleryItem {
 
 interface GalleryProps {
   items: GalleryItem[];
+  onItemClick?: (item: { src: string; title: string }) => void;
 }
 
-export default function Gallery({ items }: GalleryProps) {
+export default function Gallery({ items, onItemClick }: GalleryProps) {
   const [activeFilter, setActiveFilter] = useState('all');
 
-  const categories = ['all', ...new Set(items.map(item => item.category))];
-  const filteredItems = activeFilter === 'all' 
-    ? items 
+  const categories = ['all', ...Array.from(new Set(items.map(item => item.category)))];
+  const filteredItems = activeFilter === 'all'
+    ? items
     : items.filter(item => item.category === activeFilter);
 
   return (
     <div>
-      <div className="tabs" style={{ justifyContent: 'center' }}>
+      {/* Filter tabs */}
+      <div className="tabs" style={{ justifyContent: 'center', marginBottom: '2rem' }}>
         {categories.map((category) => (
           <button
             key={category}
@@ -34,69 +36,79 @@ export default function Gallery({ items }: GalleryProps) {
         ))}
       </div>
 
+      {/* Grid */}
       <div className="grid-4">
         {filteredItems.map((item) => (
-          <div key={item.id} style={{
-            cursor: 'pointer',
-            height: 'clamp(180px, 25vh, 300px)',
-            borderRadius: '0.5rem',
-            overflow: 'hidden',
-            backgroundColor: 'var(--charcoal)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 'clamp(2rem, 6vw, 4rem)',
-            backgroundImage: `linear-gradient(135deg, var(--craft-amber) 0%, var(--forest-green) 100%)`,
-            position: 'relative',
-            transition: 'all 0.3s ease',
-          }}
-          className="gallery-item"
-          onMouseEnter={(e) => {
-            e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)';
-            e.currentTarget.style.transform = 'translateY(-4px)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.boxShadow = 'none';
-            e.currentTarget.style.transform = 'translateY(0)';
-          }}
-          >
-            <div style={{
-              position: 'absolute',
-              inset: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 'clamp(2rem, 6vw, 4rem)'
-            }}>
-              {item.image}
-            </div>
-            <div style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundColor: 'rgba(0, 0, 0, 0)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'background-color 0.3s ease'
+          <div
+            key={item.id}
+            style={{
+              cursor: onItemClick ? 'pointer' : 'default',
+              height: 'clamp(180px, 25vh, 280px)',
+              borderRadius: '0.5rem',
+              overflow: 'hidden',
+              position: 'relative',
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              backgroundColor: 'var(--charcoal)',
             }}
-            className="gallery-overlay"
+            className="gallery-item"
+            onClick={() => onItemClick?.({ src: item.image, title: item.title })}
+            role={onItemClick ? 'button' : undefined}
+            aria-label={onItemClick ? `View ${item.title}` : undefined}
+            tabIndex={onItemClick ? 0 : undefined}
+            onKeyDown={(e) => e.key === 'Enter' && onItemClick?.({ src: item.image, title: item.title })}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-              const p = e.currentTarget.querySelector('p');
-              if (p) p.style.opacity = '1';
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-              const p = e.currentTarget.querySelector('p');
-              if (p) p.style.opacity = '0';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
             }}
+          >
+            {/* Actual image */}
+            <img
+              src={item.image}
+              alt={item.title}
+              loading="lazy"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            />
+
+            {/* Hover overlay with title */}
+            <div
+              className="gallery-overlay"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'rgba(0,0,0,0)',
+                display: 'flex',
+                alignItems: 'flex-end',
+                padding: '1rem',
+                transition: 'background 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(0,0,0,0.6)';
+                const p = e.currentTarget.querySelector('p');
+                if (p) (p as HTMLElement).style.opacity = '1';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(0,0,0,0)';
+                const p = e.currentTarget.querySelector('p');
+                if (p) (p as HTMLElement).style.opacity = '0';
+              }}
             >
               <p style={{
-                color: 'var(--off-white)',
-                fontSize: '1rem',
-                fontWeight: 'bold',
+                color: 'white',
+                fontWeight: 700,
+                fontSize: '0.9rem',
                 opacity: 0,
-                transition: 'opacity 0.3s ease'
+                transition: 'opacity 0.3s ease',
+                margin: 0,
+                textShadow: '0 1px 3px rgba(0,0,0,0.8)',
               }}>
                 {item.title}
               </p>

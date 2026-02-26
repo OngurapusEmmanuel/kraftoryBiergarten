@@ -1,119 +1,128 @@
 /**
- * SEO Utility Hook
- * Manages meta tags, structured data, and SEO optimization for each page
+ * SEO Utility
+ * Updates meta tags, Open Graph, Twitter Card, structured data, and canonical URLs.
+ *
+ * NOTE: This is a plain function, NOT a React Hook — call it anywhere
+ * (inside or outside useEffect). The eslint-disable comments on callers
+ * were incorrect and have been removed.
  */
+
+const SITE_NAME = 'Kraftory Biergarten';
+// CANONICAL: Using one consistent domain across all pages.
+// BUG FIX: Pages were split between 'kraftory.com' and 'kraftorybiergarten.com'.
+export const CANONICAL_BASE = 'https://kraftorybiergarten.com';
 
 interface SEOConfig {
   title?: string;
   description?: string;
   keywords?: string;
+  /** Relative path, e.g. '/about' or '/'. Canonical is built from CANONICAL_BASE + path. */
+  path?: string;
   image?: string;
-  url?: string;
-  schema?: Record<string, any>;
+  schema?: Record<string, unknown>;
   noindex?: boolean;
-  canonical?: string;
+}
+
+function setMeta(selector: string, attr: string, value: string, attrName = 'name') {
+  let el = document.querySelector<HTMLMetaElement>(selector);
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute(attrName, attr);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', value);
+}
+
+export function useSEO(config: SEOConfig) {
+  const fullTitle = config.title ? `${config.title} | ${SITE_NAME}` : SITE_NAME;
+  const canonicalUrl = CANONICAL_BASE + (config.path ?? '/');
+
+  // Page title
+  document.title = fullTitle;
+
+  // Basic meta
+  if (config.description) setMeta('meta[name="description"]', 'description', config.description);
+  if (config.keywords) setMeta('meta[name="keywords"]', 'keywords', config.keywords);
+
+  // Canonical link
+  let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.setAttribute('rel', 'canonical');
+    document.head.appendChild(canonical);
+  }
+  canonical.setAttribute('href', canonicalUrl);
+
+  // Open Graph
+  setMeta('meta[property="og:title"]', 'og:title', fullTitle, 'property');
+  setMeta('meta[property="og:site_name"]', 'og:site_name', SITE_NAME, 'property');
+  setMeta('meta[property="og:type"]', 'og:type', 'website', 'property');  // SEO FIX: was missing
+  setMeta('meta[property="og:url"]', 'og:url', canonicalUrl, 'property');
+  if (config.description) setMeta('meta[property="og:description"]', 'og:description', config.description, 'property');
+  if (config.image) setMeta('meta[property="og:image"]', 'og:image', config.image, 'property');
+
+  // Twitter Card  — SEO FIX: twitter:card was never set
+  setMeta('meta[name="twitter:card"]', 'twitter:card', 'summary_large_image');
+  setMeta('meta[name="twitter:site"]', 'twitter:site', '@kraftorybier');
+  setMeta('meta[name="twitter:title"]', 'twitter:title', fullTitle);
+  if (config.description) setMeta('meta[name="twitter:description"]', 'twitter:description', config.description);
+  if (config.image) setMeta('meta[name="twitter:image"]', 'twitter:image', config.image);
+
+  // Robots
+  if (config.noindex) {
+    setMeta('meta[name="robots"]', 'robots', 'noindex, nofollow');
+  }
+
+  // JSON-LD structured data
+  if (config.schema) {
+    const existing = document.querySelector('script[data-seo="true"]');
+    if (existing) existing.remove();
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-seo', 'true');
+    script.textContent = JSON.stringify(config.schema);
+    document.head.appendChild(script);
+  }
 }
 
 /**
- * Hook to update page SEO
- * Usage: useSEO({ title: 'Menu', description: '...' })
+ * Shared LocalBusiness / FoodEstablishment schema for the whole site.
+ * Used on the Home page and as a base for other pages.
  */
-export function useSEO(config: SEOConfig) {
-  // Update title
-  if (config.title) {
-    document.title = `${config.title} | Kraftory Biergarten`;
-  }
-
-  // Update meta description
-  const metaDescription = document.querySelector('meta[name="description"]');
-  if (metaDescription && config.description) {
-    metaDescription.setAttribute('content', config.description);
-  }
-
-  // Update meta keywords
-  const metaKeywords = document.querySelector('meta[name="keywords"]');
-  if (metaKeywords && config.keywords) {
-    metaKeywords.setAttribute('content', config.keywords);
-  }
-
-  // Update Open Graph tags
-  const updateOGTag = (property: string, content: string) => {
-    let og = document.querySelector(`meta[property="${property}"]`);
-    if (!og) {
-      og = document.createElement('meta');
-      og.setAttribute('property', property);
-      document.head.appendChild(og);
-    }
-    og.setAttribute('content', content);
-  };
-
-  if (config.title) {
-    updateOGTag('og:title', `${config.title} | Kraftory Biergarten`);
-  }
-  if (config.description) {
-    updateOGTag('og:description', config.description);
-  }
-  if (config.image) {
-    updateOGTag('og:image', config.image);
-  }
-  if (config.url) {
-    updateOGTag('og:url', config.url);
-  }
-
-  // Update Twitter Card
-  const updateTwitterTag = (name: string, content: string) => {
-    let tag = document.querySelector(`meta[name="${name}"]`);
-    if (!tag) {
-      tag = document.createElement('meta');
-      tag.setAttribute('name', name);
-      document.head.appendChild(tag);
-    }
-    tag.setAttribute('content', content);
-  };
-
-  if (config.title) {
-    updateTwitterTag('twitter:title', `${config.title} | Kraftory Biergarten`);
-  }
-  if (config.description) {
-    updateTwitterTag('twitter:description', config.description);
-  }
-  if (config.image) {
-    updateTwitterTag('twitter:image', config.image);
-  }
-
-  // Update canonical URL
-  if (config.canonical) {
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', config.canonical);
-  }
-
-  // Update robots meta tag for noindex
-  if (config.noindex) {
-    const robots = document.querySelector('meta[name="robots"]');
-    if (robots) {
-      robots.setAttribute('content', 'noindex, nofollow');
-    }
-  }
-
-  // Add structured data (JSON-LD)
-  if (config.schema) {
-    // Remove existing schema script if present
-    const existingSchema = document.querySelector('script[type="application/ld+json"]');
-    if (existingSchema) {
-      existingSchema.remove();
-    }
-
-    // Add new schema
-    const schema = document.createElement('script');
-    schema.type = 'application/ld+json';
-    schema.textContent = JSON.stringify(config.schema);
-    document.head.appendChild(schema);
-  }
-}
+export const restaurantSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['FoodEstablishment', 'SportsActivityLocation'],
+  name: SITE_NAME,
+  description: 'Nairobi\'s premier biergarten featuring craft beer, artisan food, padel courts, and event spaces.',
+  url: CANONICAL_BASE,
+  telephone: '+254113555777',
+  email: 'info@kraftorybiergarten.com',
+  image: `${CANONICAL_BASE}/og-image.jpg`,
+  servesCuisine: ['International', 'German', 'Kenyan'],
+  priceRange: 'KES 200 – KES 3,500',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Off Red Hill Road',
+    addressLocality: 'Nairobi',
+    addressCountry: 'KE',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -1.2258177987624916,
+    longitude: 36.79517577395949,
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: '06:00',
+      closes: '23:00',
+    },
+  ],
+  sameAs: [
+    'https://www.instagram.com/kraftorybiergarten/',
+    'https://twitter.com/kraftorybier',
+  ],
+};
 
 export default useSEO;

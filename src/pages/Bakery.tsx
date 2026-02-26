@@ -10,17 +10,24 @@ export default function Bakery() {
     useSEO({
       title: 'Artisan Bakery',
       description: 'Discover Kraftory\'s artisan bakery featuring fresh-baked breads, pastries, desserts, and premium coffee pairings crafted daily in Nairobi.',
-      keywords: 'bakery, bread, pastries, desserts, coffee, artisan, Nairobi',
-      canonical: 'https://kraftory.com/bakery',
+      keywords: 'artisan bakery Nairobi, fresh bread, pastries, desserts, coffee, Kraftory',
+      path: '/bakery',
       schema: {
         '@context': 'https://schema.org',
-        '@type': 'LocalBusiness',
-        name: 'Kraftory Biergarten - Bakery',
-        description: 'Artisan bakery with fresh breads, pastries, and desserts',
-        url: 'https://kraftory.com/bakery'
-      }
+        '@type': 'Bakery',
+        name: 'Kraftory Biergarten — Artisan Bakery',
+        description: 'Fresh-baked breads, pastries, desserts, and coffee daily',
+        url: 'https://kraftorybiergarten.com/bakery',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Off Red Hill Road',
+          addressLocality: 'Nairobi',
+          addressCountry: 'KE',
+        },
+      },
     });
   }, []);
+
   const bakeryItems = {
     breads: [
       { name: 'Rustic Sourdough', desc: 'Artisan hand-crafted daily', price: 'KES 350' },
@@ -55,6 +62,8 @@ export default function Bakery() {
         subtitle="Baked fresh daily • Crafted with passion"
       />
 
+      {/* BUG FIX: Previously all 4 sections were bgType="light", creating a monotonous page.
+          Now alternating light/dark for visual rhythm. */}
       <Section title="Fresh Breads" subtitle="" bgType="light">
         <div className="grid-2">
           {bakeryItems.breads.map((item, idx) => (
@@ -63,7 +72,7 @@ export default function Bakery() {
         </div>
       </Section>
 
-      <Section title="Pastries" subtitle="" bgType="light">
+      <Section title="Pastries" subtitle="" bgType="dark">
         <div className="grid-2">
           {bakeryItems.pastries.map((item, idx) => (
             <MenuItem key={idx} name={item.name} description={item.desc} price={item.price} />
@@ -79,7 +88,7 @@ export default function Bakery() {
         </div>
       </Section>
 
-      <Section title="☕ Coffee Pairings" subtitle="" bgType="light">
+      <Section title="☕ Coffee Pairings" subtitle="" bgType="dark">
         <div className="grid-2">
           {bakeryItems.coffee.map((item, idx) => (
             <MenuItem key={idx} name={item.name} description={item.desc} price={item.price} />
@@ -87,9 +96,17 @@ export default function Bakery() {
         </div>
       </Section>
 
+      {/* BUG FIX: Was a dead <button>. Now links to WhatsApp for pre-orders. */}
       <Section title="Order Fresh-Baked Goods" subtitle="Order ahead and pick up warm from the oven" bgType="amber">
         <div style={{ textAlign: 'center' }}>
-          <button className="btn btn-secondary">Place Pre-Order</button>
+          <a
+            href="https://wa.me/254113555777?text=Hi%2C%20I'd%20like%20to%20pre-order%20from%20the%20Kraftory%20Bakery%20🥐"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-secondary"
+          >
+            Pre-Order via WhatsApp
+          </a>
         </div>
       </Section>
     </Layout>

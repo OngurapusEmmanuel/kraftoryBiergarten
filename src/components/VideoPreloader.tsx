@@ -1,35 +1,40 @@
-import { useEffect, useRef } from "react";
-import "./VideoPreloader.css";
-import preloadVideo from "../assets/animation.mp4";
+import { useEffect, useRef } from 'react';
+import './VideoPreloader.css';
+// BUG FIX: Corrected casing — file on disk is 'Animation.mp4' not 'animation.mp4'.
+// Case-sensitive Linux/production builds would fail with the old import.
+import preloadVideo from '../assets/Animation.mp4';
 
-export default function VideoPreloader({ onFinish ,any }) {
+interface VideoPreloaderProps {
+  // BUG FIX: Removed invalid 'any' prop from destructuring (was a syntax/type error).
+  onFinish: () => void;
+}
 
-  const videoRef = useRef(null);
+export default function VideoPreloader({ onFinish }: VideoPreloaderProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-
     const video = videoRef.current;
+    if (!video) return;
 
-    if (video) {
+    // BUG FIX: onFinish is now correctly wired to video end,
+    // plus a fallback timer in case autoplay is blocked by the browser.
+    const handleEnd = () => {
+      setTimeout(onFinish, 400);
+    };
 
-      video.onended = () => {
+    video.addEventListener('ended', handleEnd);
 
-        setTimeout(() => {
+    // Fallback: if video doesn't play or never fires 'ended' within 7 seconds
+    const fallback = setTimeout(onFinish, 7000);
 
-          onFinish();
-
-        }, 500);
-
-      };
-
-    }
-
+    return () => {
+      video.removeEventListener('ended', handleEnd);
+      clearTimeout(fallback);
+    };
   }, [onFinish]);
 
   return (
-
     <div className="video-preloader">
-
       <video
         ref={videoRef}
         autoPlay
@@ -37,13 +42,8 @@ export default function VideoPreloader({ onFinish ,any }) {
         playsInline
         className="preloader-video"
       >
-
         <source src={preloadVideo} type="video/mp4" />
-
       </video>
-
     </div>
-
   );
-
 }

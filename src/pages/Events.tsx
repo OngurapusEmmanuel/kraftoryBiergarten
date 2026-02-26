@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Layout from '../layouts/Layout';
 import Hero from '../components/Hero';
 import Section from '../components/Section';
@@ -9,19 +10,25 @@ export default function Events() {
   useEffect(() => {
     useSEO({
       title: 'Events & Venues',
-      description: 'Host your corporate events, birthday parties, and special occasions at Kraftory Biergarten. Multiple venue spaces and customizable packages available.',
-      keywords: 'events, parties, corporate, birthday, venues, event venue, Nairobi',
-      canonical: 'https://kraftory.com/events',
+      description: 'Host your corporate events, birthday parties, and special occasions at Kraftory Biergarten. Multiple venue spaces and customizable packages available in Nairobi.',
+      keywords: 'events venue Nairobi, birthday parties, corporate events, team building, Kraftory',
+      path: '/events',
       schema: {
         '@context': 'https://schema.org',
-        '@type': 'LocalBusiness',
-        name: 'Kraftory Biergarten - Events',
-        description: 'Event venue and party space in Nairobi',
-        url: 'https://kraftory.com/events',
-        areaServed: 'Nairobi, Kenya'
-      }
+        '@type': 'EventVenue',
+        name: 'Kraftory Biergarten — Events & Venues',
+        description: 'Premium event venue and party space in Nairobi',
+        url: 'https://kraftorybiergarten.com/events',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Off Red Hill Road',
+          addressLocality: 'Nairobi',
+          addressCountry: 'KE',
+        },
+      },
     });
   }, []);
+
   const eventTypes = [
     { icon: '🎂', title: 'Birthday Parties', desc: 'Celebrate in style with friends at our vibrant venue' },
     { icon: '🎉', title: 'Corporate Parties', desc: 'Impress clients and teams with premium hospitality' },
@@ -32,10 +39,10 @@ export default function Events() {
   ];
 
   const venueSpaces = [
-    { icon: '🌿', name: 'Outdoor Garden', capacity: '60-80 guests', vibe: 'Relaxed & scenic', desc: 'Open-air garden with natural ambiance, perfect for casual gatherings' },
-    { icon: '🍺', name: 'Main Biergarten', capacity: '150-200 guests', vibe: 'Vibrant & social', desc: 'The heart of Kraftory with premium seating and shared tables' },
-    { icon: '👑', name: 'Private VIP Lounge', capacity: '30-50 guests', vibe: 'Exclusive & intimate', desc: 'Upscale private space with personalized service for elite events' },
-    { icon: '🍸', name: 'Bar Area', capacity: '40-60 guests', vibe: 'Lively & energetic', desc: 'Premium bar counter with craft cocktails and interactive bartending' },
+    { icon: '🌿', name: 'Outdoor Garden', capacity: '60–80 guests', vibe: 'Relaxed & scenic', desc: 'Open-air garden with natural ambiance, perfect for casual gatherings' },
+    { icon: '🍺', name: 'Main Biergarten', capacity: '150–200 guests', vibe: 'Vibrant & social', desc: 'The heart of Kraftory with premium seating and shared tables' },
+    { icon: '👑', name: 'Private VIP Lounge', capacity: '30–50 guests', vibe: 'Exclusive & intimate', desc: 'Upscale private space with personalized service for elite events' },
+    { icon: '🍸', name: 'Bar Area', capacity: '40–60 guests', vibe: 'Lively & energetic', desc: 'Premium bar counter with craft cocktails and interactive bartending' },
   ];
 
   const eventPackages = [
@@ -43,50 +50,33 @@ export default function Events() {
       name: 'Corporate Package',
       desc: 'Perfect for team gatherings and business events',
       includes: [
-        'Reserved premium space',
-        'Welcome drinks & appetizers',
-        'Food platters selection',
-        'Drinks package (3 hours)',
-        'Event coordinator',
-        'Setup & decoration',
-      ]
+        'Reserved premium space', 'Welcome drinks & appetizers', 'Food platters selection',
+        'Drinks package (3 hours)', 'Event coordinator', 'Setup & decoration',
+      ],
     },
     {
       name: 'Birthday Celebration',
       desc: 'Make memories with friends and family',
       includes: [
-        'Dedicated birthday space',
-        'Welcome champagne toast',
-        'Premium food selection',
-        'Drinks package (3 hours)',
-        'Birthday cake arrangement',
-        'DJ or live music option',
-      ]
-      
+        'Dedicated birthday space', 'Welcome champagne toast', 'Premium food selection',
+        'Drinks package (3 hours)', 'Birthday cake arrangement', 'DJ or live music option',
+      ],
     },
     {
       name: 'Networking Plus',
       desc: 'Connect, collaborate, celebrate',
       includes: [
-        'Flexible multi-space access',
-        'Signature mocktails & beers',
-        'Gourmet appetizer platters',
-        'Premium WiFi & AV setup',
-        'Networking facilitation',
-        'Event photography',
-      ]
+        'Flexible multi-space access', 'Signature mocktails & beers', 'Gourmet appetizer platters',
+        'Premium WiFi & AV setup', 'Networking facilitation', 'Event photography',
+      ],
     },
     {
       name: 'Deluxe VIP Experience',
       desc: 'Luxury event for discerning hosts',
       includes: [
-        'Exclusive VIP lounge access',
-        'Premium spirits & champagne',
-        'Chef-curated menu',
-        'Personal event manager',
-        'Valet parking',
-        'Professional photography & videography',
-      ]
+        'Exclusive VIP lounge access', 'Premium spirits & champagne', 'Chef-curated menu',
+        'Personal event manager', 'Valet parking', 'Professional photography & videography',
+      ],
     },
   ];
 
@@ -95,9 +85,7 @@ export default function Events() {
       <Hero
         title="Host Your Event at Kraftory 🍻"
         subtitle="Create unforgettable moments in Nairobi's premier event venue"
-        buttons={[
-          { label: 'Enquire Now', url: '/contact' },
-        ]}
+        buttons={[{ label: 'Enquire Now', url: '/contact' }]}
       />
 
       <Section title="Event Types We Host" subtitle="From intimate gatherings to grand celebrations" bgType="light">
@@ -122,9 +110,7 @@ export default function Events() {
               <p className="text-sm" style={{ color: 'var(--forest-green)', fontWeight: 700, marginBottom: '1rem' }}>
                 Vibe: {space.vibe}
               </p>
-              <p className="muted" style={{ lineHeight: '1.6' }}>
-                {space.desc}
-              </p>
+              <p className="muted" style={{ lineHeight: '1.6' }}>{space.desc}</p>
             </div>
           ))}
         </div>
@@ -152,25 +138,20 @@ export default function Events() {
                   ))}
                 </ul>
               </div>
-              <div className="text-lg" style={{
-                fontWeight: 'bold',
-                color: 'var(--craft-amber)',
-                paddingTop: '1rem',
-                borderTop: '1px solid var(--craft-amber)',
-              }}>
-                
-              </div>
             </div>
           ))}
         </div>
       </Section>
 
+      {/* BUG FIX: Was a dead <button>. Now a working Link to contact page. */}
       <Section title="Ready to Celebrate?" subtitle="Contact us today to plan your perfect event" bgType="amber">
         <div className="text-align-center">
           <p className="text-lg" style={{ marginBottom: '1.5rem', color: 'var(--charcoal)' }}>
             Our event team is ready to make your occasion unforgettable
           </p>
-          <button className="btn btn-secondary">Get Event Quote</button>
+          <Link to="/contact" className="btn btn-secondary">
+            Get in Touch
+          </Link>
         </div>
       </Section>
     </Layout>

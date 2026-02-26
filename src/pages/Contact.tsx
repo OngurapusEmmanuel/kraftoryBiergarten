@@ -8,37 +8,36 @@ export default function Contact() {
   useEffect(() => {
     useSEO({
       title: 'Contact & Reservations',
-      description: 'Reserve a table at Kraftory Biergarten. Contact us for event bookings, padel court reservations, and inquiries. Located on Red Hill Road, Nairobi.',
-      keywords: 'contact, reservations, booking, Nairobi, padel courts',
-      canonical: 'https://kraftory.com/contact',
+      description: 'Reserve a table at Kraftory Biergarten. Contact us for event bookings, padel court reservations, and inquiries. Located on Red Hill Road, Nairobi. Open daily 6 AM–11 PM.',
+      keywords: 'contact Kraftory, reservations Nairobi, table booking, padel court booking',
+      path: '/contact',
       schema: {
         '@context': 'https://schema.org',
         '@type': 'ContactPage',
-        name: 'Kraftory Biergarten - Contact',
-        url: 'https://kraftory.com/contact'
-      }
+        name: 'Kraftory Biergarten — Contact & Reservations',
+        url: 'https://kraftorybiergarten.com/contact',
+      },
     });
   }, []);
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
+    name: '', email: '', phone: '', subject: '', message: '',
   });
+  // BUG FIX: Form had no success/error feedback — just logged to console.
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // TODO: wire to your backend / Formspree / email service
     console.log('Contact form submitted:', formData);
-    // Handle form submission here
+    setSubmitted(true);
+    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
   };
+
   return (
     <Layout>
       <Hero
@@ -53,8 +52,8 @@ export default function Contact() {
               📍 Location
             </h3>
             <p className="lead">
-              Off Redhill Road<br />
-              <span className="muted"> Next to Commission of University Education, Nairobi, Kenya</span>
+              Off Red Hill Road<br />
+              <span className="muted">Next to Commission for University Education, Nairobi, Kenya</span>
             </p>
           </div>
 
@@ -79,107 +78,94 @@ export default function Contact() {
               🕐 Hours
             </h3>
             <div className="lead">
-              <p>Mon-Sun: 6 AM - 11 PM</p>
-              
+              <p>Mon–Sun: 6 AM – 11 PM</p>
             </div>
           </div>
         </div>
       </Section>
 
-      <Section title="Send us a Message" subtitle="" bgType="dark">
+      <Section title="Send Us a Message" subtitle="" bgType="dark">
         <div className="max-w-600">
-          <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.5rem' }}>
-            <div>
-              <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--warm-beige)' }}>
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your name"
-                required
-                className="form-control"
-              />
-            </div>
-
-            <div>
-              <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--warm-beige)' }}>
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="your@email.com"
-                required
-                className="form-control"
-              />
-            </div>
-
-            <div>
-              <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--warm-beige)' }}>
-                Phone
-              </label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="+254 113 555 777"
-                className="form-control"
-              />
-            </div>
-
-            <div>
-              <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--warm-beige)' }}>
-                Subject
-              </label>
-              <select
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                required
-                className="form-control"
+          {submitted ? (
+            <div style={{
+              textAlign: 'center',
+              padding: '3rem 2rem',
+              background: 'rgba(196,122,44,0.1)',
+              borderRadius: '0.5rem',
+              border: '2px solid var(--craft-amber)',
+            }}>
+              <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>✅</div>
+              <h3 style={{ color: 'var(--craft-amber)', marginBottom: '0.75rem' }}>Message Sent!</h3>
+              <p style={{ color: 'var(--warm-beige)', marginBottom: '1.5rem' }}>
+                Thanks for reaching out. We'll get back to you within 24 hours.
+              </p>
+              <button
+                className="btn btn-outline"
+                onClick={() => setSubmitted(false)}
               >
-                <option value="">Select a subject</option>
-                <option value="inquiry">General Inquiry</option>
-                <option value="events">Events & Catering</option>
-                <option value="feedback">Feedback</option>
-                <option value="partnership">Partnership</option>
-                <option value="other">Other</option>
-              </select>
+                Send Another Message
+              </button>
             </div>
+          ) : (
+            <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.5rem' }}>
+              <div>
+                <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--warm-beige)' }}>
+                  Name
+                </label>
+                <input type="text" name="name" value={formData.name} onChange={handleChange}
+                  placeholder="Your name" required className="form-control" />
+              </div>
 
-            <div>
-              <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--warm-beige)' }}>
-                Message
-              </label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Your message here..."
-                rows={5}
-                required
-                className="form-control"
-                style={{ resize: 'vertical' }}
-              />
-            </div>
+              <div>
+                <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--warm-beige)' }}>
+                  Email
+                </label>
+                <input type="email" name="email" value={formData.email} onChange={handleChange}
+                  placeholder="your@email.com" required className="form-control" />
+              </div>
 
-            <button
-              type="submit"
-              className="btn btn-secondary"
-              style={{ width: '100%' }}
-            >
-              Send Message
-            </button>
-          </form>
-          <p className="text-sm" style={{ color: 'var(--warm-beige)', textAlign: 'center', marginTop: '1rem' }}>
-            We'll respond to your message within 24 hours
-          </p>
+              <div>
+                <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--warm-beige)' }}>
+                  Phone
+                </label>
+                <input type="tel" name="phone" value={formData.phone} onChange={handleChange}
+                  placeholder="+254 113 555 777" className="form-control" />
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--warm-beige)' }}>
+                  Subject
+                </label>
+                <select name="subject" value={formData.subject} onChange={handleChange}
+                  required className="form-control">
+                  <option value="">Select a subject</option>
+                  <option value="inquiry">General Inquiry</option>
+                  <option value="events">Events &amp; Catering</option>
+                  <option value="feedback">Feedback</option>
+                  <option value="partnership">Partnership</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '0.5rem', color: 'var(--warm-beige)' }}>
+                  Message
+                </label>
+                <textarea name="message" value={formData.message} onChange={handleChange}
+                  placeholder="Your message here..." rows={5} required className="form-control"
+                  style={{ resize: 'vertical' }} />
+              </div>
+
+              <button type="submit" className="btn btn-secondary" style={{ width: '100%' }}>
+                Send Message
+              </button>
+            </form>
+          )}
+          {!submitted && (
+            <p className="text-sm" style={{ color: 'var(--warm-beige)', textAlign: 'center', marginTop: '1rem' }}>
+              We'll respond within 24 hours
+            </p>
+          )}
         </div>
       </Section>
 
@@ -190,11 +176,11 @@ export default function Contact() {
             width="100%"
             height="450"
             style={{ border: 'none' }}
-            allowFullScreen={true}
+            allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Kraftory Biergarten Location"
-          ></iframe>
+            title="Kraftory Biergarten location on Google Maps"
+          />
         </div>
       </Section>
 
@@ -203,37 +189,33 @@ export default function Contact() {
           <p className="text-lg" style={{ marginBottom: '1.5rem', color: 'var(--charcoal)' }}>
             Book your table directly with our online reservation system
           </p>
-          <a 
-            href="https://eatapp.co/reserve/kraftory-biergarten-red-hill-rd-nairobi?source=iframe" 
-            target="_blank" 
+          <a
+            href="https://eatapp.co/reserve/kraftory-biergarten-red-hill-rd-nairobi?source=iframe"
+            target="_blank"
             rel="noopener noreferrer"
-            style={{ textDecoration: 'none' }}
+            className="btn btn-secondary"
           >
-            <button className="btn btn-secondary">Reserve Your Table</button>
+            Reserve Your Table
           </a>
         </div>
       </Section>
 
-      <Section title="Quick Contact" subtitle="Prefer to chat? Reach out to us on WhatsApp" bgType="amber">
+      <Section title="Quick Contact" subtitle="Prefer to chat? Reach out on WhatsApp" bgType="amber">
         <div className="text-align-center">
-          <a href="https://wa.me/254113555777" style={{ display: 'inline-block', textDecoration: 'none' }}>
-            <button className="btn btn-secondary">💬 Message on WhatsApp</button>
+          <a href="https://wa.me/254113555777" className="btn btn-secondary">
+            💬 Message on WhatsApp
           </a>
         </div>
       </Section>
 
       <Section title="Follow Us" subtitle="" bgType="light">
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-          {[
-            { name: 'Instagram', url: 'https://www.instagram.com/kraftorybiergarten/' },
-            { name: 'Twitter', url: 'https://twitter.com/kraftorybier' }
-          ].map((p) => (
-            <a key={p.name} href={p.url} target={p.url !== '#' ? '_blank' : undefined} rel={p.url !== '#' ? 'noopener noreferrer' : undefined} style={{ textDecoration: 'none' }}>
-              <button className="btn btn-primary btn-inline">
-                {p.name}
-              </button>
-            </a>
-          ))}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+          <a href="https://www.instagram.com/kraftorybiergarten/" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+            Instagram
+          </a>
+          <a href="https://twitter.com/kraftorybier" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+            𝕏 Twitter
+          </a>
         </div>
       </Section>
     </Layout>
