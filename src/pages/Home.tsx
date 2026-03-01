@@ -78,7 +78,7 @@ export default function Home() {
       {/* Events Banner */}
       <Section title="Coming This Month" subtitle="🎵 Live Music Nights • 🥐 Weekend Brunch • 🎾 Padel Tournaments" bgType="amber">
         <div className="text-align-center">
-          <Link to="/events" className="btn btn-secondary">
+          <Link to="/padel" className="btn btn-secondary">
             View Events &amp; Details
           </Link>
         </div>

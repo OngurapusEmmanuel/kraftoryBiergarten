@@ -29,7 +29,7 @@ export default function Footer() {
             <h4 className="text-accent">Experience</h4>
             <a href="https://kraftory-biergarten.ubuntu.click/menu.html?menuId=b0a494f4-7f0f-42dc-8e09-3dcee962fd6d&title=Kraftory%20Drinks%20Menu"
               target="_blank" rel="noopener noreferrer">Craft Beer</a>
-            <Link to="/bakery">Bakery</Link>
+            {/* <Link to="/bakery">Bakery</Link> */}
             <Link to="/padel">Padel Courts</Link>
             <Link to="/events">Events &amp; Venue</Link>
           </div>
