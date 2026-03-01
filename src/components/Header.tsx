@@ -60,7 +60,7 @@ export default function Header() {
               </span>
               <div className="dropdown-content">
                 <Link to="/menu" onClick={handleLinkClick}>Food Menu</Link>
-                <Link to="/bakery" onClick={handleLinkClick}>Bakery</Link>
+                {/* <Link to="/bakery" onClick={handleLinkClick}>Bakery</Link> */}
                 <Link to="/beer" onClick={handleLinkClick}>Beer &amp; Drinks</Link>
               </div>
             </div>
@@ -79,15 +79,15 @@ export default function Header() {
             >
               Events &amp; Venue
             </Link>
-            <Link
+            {/* <Link
               to="/gallery"
               onClick={handleLinkClick}
               className={isActive('/gallery') ? 'nav-active' : ''}
             >
               Gallery
-            </Link>
+            </Link> */}
             <Link to="/contact" className="nav-button" onClick={handleLinkClick}>
-              Book
+              Contact & Reservations
             </Link>
           </nav>
 
