@@ -1,256 +1,238 @@
 /* =========================
-ABOUT PAGE PREMIUM DESIGN
+   HERO REFINEMENT
 ========================= */
-
-
-/* HERO REFINEMENT */
-
 .hero {
-
   position: relative;
-
 }
 
 .hero::after {
-
   content: "";
-
   position: absolute;
-
   inset: 0;
-
-  background:
-
-    linear-gradient(
-      rgba(0,0,0,0.55),
-      rgba(0,0,0,0.75)
-    );
-
+  background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75));
+  pointer-events: none;
 }
 
-
 /* =========================
-OUR STORY
+   OUR STORY
 ========================= */
-
 .about-story {
-
   max-width: 900px;
-
   margin: auto;
-
   text-align: center;
-
 }
 
 .about-story p {
-
   font-size: 1.15rem;
-
   line-height: 1.9;
-
-  color: #705656;
-
+  color: #555;
 }
 
-
 /* =========================
-VALUES SECTION
+   VALUES SECTION
 ========================= */
-
 .values-grid .card {
-
   padding: 40px;
-
   border-radius: 18px;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #1c1c1c,
-      #0f0f0f
-    );
-
-  box-shadow:
-
-    0 10px 35px rgba(0,0,0,0.5);
-
+  background: linear-gradient(145deg, #1c1c1c, #0f0f0f);
+  box-shadow: 0 10px 35px rgba(0,0,0,0.5);
   transition: all 0.4s ease;
-
 }
 
 .values-grid .card:hover {
-
   transform: translateY(-10px);
-
-  box-shadow:
-
-    0 20px 50px rgba(0,0,0,0.7);
-
+  box-shadow: 0 20px 50px rgba(0,0,0,0.7);
 }
 
-
 /* =========================
-TIMELINE PREMIUM
+   TIMELINE
 ========================= */
-
 .timeline {
-
   max-width: 800px;
-
   margin: auto;
-
   position: relative;
-
+  padding-left: 12px;
 }
 
 .timeline::before {
-
   content: "";
-
   position: absolute;
-
-  left: 18px;
-
+  left: 30px;
   top: 0;
-
   bottom: 0;
-
   width: 3px;
-
   background: var(--craft-amber);
-
 }
 
 .timeline-item {
-
   display: flex;
-
-  gap: 20px;
-
+  gap: 24px;
   margin-bottom: 40px;
-
+  align-items: flex-start;
 }
 
 .timeline-bubble {
-
   width: 40px;
-
   height: 40px;
-
+  min-width: 40px;
   border-radius: 50%;
-
   background: var(--craft-amber);
-
   color: black;
-
   font-weight: bold;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
   flex-shrink: 0;
-
-  box-shadow:
-
-    0 0 20px rgba(255,180,0,0.5);
-
+  font-size: 0.85rem;
+  box-shadow: 0 0 20px rgba(255,180,0,0.4);
+  position: relative;
+  z-index: 1;
 }
 
 .timeline-content {
-
   background: #121212;
-
-  padding: 20px;
-
+  color: var(--warm-beige);
+  padding: 20px 24px;
   border-radius: 12px;
-
-  box-shadow:
-
-    0 10px 30px rgba(0,0,0,0.4);
-
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  flex: 1;
 }
 
-
-/* =========================
-TEAM SECTION
-========================= */
-
-.team-grid .card {
-
-  text-align: center;
-
-  padding: 40px;
-
-  border-radius: 18px;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #1b1b1b,
-      #0f0f0f
-    );
-
-  transition: all 0.4s ease;
-
-}
-
-.team-grid .card:hover {
-
-  transform: translateY(-10px);
-
-}
-
-.team-grid .card h3 {
-
-  margin-top: 10px;
-
-  font-size: 1.4rem;
-
-}
-
-.team-grid .card p {
-
+.timeline-content h3 {
   color: var(--craft-amber);
-
-  font-weight: 500;
-
 }
 
+.timeline-content p {
+  color: var(--warm-beige);
+  margin: 0;
+  line-height: 1.6;
+}
 
 /* =========================
-JOIN COMMUNITY CTA
+   TEAM FLIP CARDS
 ========================= */
 
-.cta-section {
+/* Card container — sets the 3D perspective */
+.flip-card {
+  perspective: 1000px;
+  height: 300px;
+  cursor: pointer;
+  outline: none;
+}
 
+/* The element that actually rotates */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+  border-radius: 18px;
+}
+
+/* Flip on hover and focus (keyboard accessible) */
+.flip-card:hover .flip-card-inner,
+.flip-card:focus .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Shared face styles */
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
   text-align: center;
+}
 
+/* FRONT face */
+.flip-card-front {
+  background: linear-gradient(145deg, #1b1b1b, #0f0f0f);
+  box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+}
+
+.flip-card-front h3 {
+  color: var(--craft-amber);
+  margin: 12px 0 6px;
+  font-size: 1.35rem;
+}
+
+.flip-card-icon {
+  font-size: 3rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+}
+
+.flip-card-role {
+  color: var(--warm-beige);
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin: 0 0 20px;
+}
+
+.flip-hint {
+  font-size: 0.78rem;
+  color: var(--craft-amber);
+  opacity: 0.7;
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(196,122,44,0.35);
+  border-radius: 20px;
+  padding: 4px 12px;
+  margin-top: auto;
+}
+
+/* BACK face — starts rotated 180° so it's hidden by default */
+.flip-card-back {
+  background: linear-gradient(145deg, var(--craft-amber), #a85e10);
+  transform: rotateY(180deg);
+  box-shadow: 0 10px 35px rgba(196,122,44,0.35);
+  gap: 16px;
+  justify-content: center;
+}
+
+.flip-card-back .flip-card-icon {
+  font-size: 2.4rem;
+}
+
+.flip-card-message {
+  color: #1a0e00;
+  font-size: 0.93rem;
+  line-height: 1.75;
+  font-style: italic;
+  font-weight: 500;
+  margin: 0;
+}
+
+.flip-card-sig {
+  color: rgba(0,0,0,0.6);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+/* =========================
+   CTA SECTION
+========================= */
+.cta-section {
+  text-align: center;
 }
 
 .cta-section .btn {
-
   padding: 16px 40px;
-
   font-size: 1.1rem;
-
   border-radius: 40px;
-
-  box-shadow:
-
-    0 10px 30px rgba(0,0,0,0.5);
-
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   transition: all 0.3s ease;
-
 }
 
 .cta-section .btn:hover {
-
   transform: scale(1.05);
-
 }
