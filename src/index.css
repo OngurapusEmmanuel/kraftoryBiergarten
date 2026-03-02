@@ -518,7 +518,7 @@ footer .footer-bottom {
 
 /* Hero Section */
 .hero {
-  min-height: clamp(360px, 50vh, 700px);
+  min-height: clamp(250px, 40vh, 550px);
   display: flex;
   align-items: center;
   justify-content: center;

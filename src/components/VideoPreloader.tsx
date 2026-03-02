@@ -16,16 +16,17 @@ export default function VideoPreloader({ onFinish }: VideoPreloaderProps) {
     const video = videoRef.current;
     if (!video) return;
 
-    // BUG FIX: onFinish is now correctly wired to video end,
-    // plus a fallback timer in case autoplay is blocked by the browser.
+    // Play at 2x speed
+    video.playbackRate = 2.0;
+
     const handleEnd = () => {
       setTimeout(onFinish, 400);
     };
 
     video.addEventListener('ended', handleEnd);
 
-    // Fallback: if video doesn't play or never fires 'ended' within 7 seconds
-    const fallback = setTimeout(onFinish, 7000);
+    // Fallback: halved from 7s to 3.5s since video plays 2x faster
+    const fallback = setTimeout(onFinish, 3500);
 
     return () => {
       video.removeEventListener('ended', handleEnd);
