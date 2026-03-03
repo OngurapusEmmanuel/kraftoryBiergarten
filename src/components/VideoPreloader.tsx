@@ -17,7 +17,7 @@ export default function VideoPreloader({ onFinish }: VideoPreloaderProps) {
     if (!video) return;
 
     // Play at 2x speed
-    video.playbackRate = 2.0;
+    video.playbackRate = 3.0;
 
     const handleEnd = () => {
       setTimeout(onFinish, 400);
