@@ -1,3 +1,6 @@
+import { useState, useRef, useEffect } from 'react';
+import './Hero.css';
+
 interface HeroProps {
   title: string;
   subtitle: string;
@@ -5,13 +8,27 @@ interface HeroProps {
 }
 
 export default function Hero({ title, subtitle, buttons }: HeroProps) {
+  const [floating, setFloating] = useState(false);
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      // as soon as the user scrolls down even a little bit, keep
+      // the two buttons fixed below the sticky header so they remain
+      // visible along with the nav bar.
+      setFloating(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <section className="hero hero-bg-gradient">
+    <section ref={heroRef} className="hero hero-bg-gradient">
       <div className="hero-content">
         <h1>{title}</h1>
         <p>{subtitle}</p>
         {buttons && buttons.length > 0 && (
-          <div className="hero-buttons">
+          <div className={"hero-buttons" + (floating ? " floating" : "")}>
             {buttons.map((btn, idx) => (
               <a
                 key={idx}

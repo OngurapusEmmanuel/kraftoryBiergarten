@@ -12,6 +12,7 @@ import courtsImg from '../assets/padel images/courts.jpg';
 
 export default function PadelEvents() {
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useSEO({
       title: 'Padel & Sports',
       description: 'Book padel courts at Kraftory Biergarten Nairobi. 3 premium courts, professional coaching, equipment hire, and KES 1,000 F&B vouchers with every booking.',
@@ -54,12 +55,38 @@ export default function PadelEvents() {
       <Section title="Professional Padel Courts" subtitle="" bgType="dark">
         <div className="grid-4">
           {[
-            { title: '3 Premium Courts', desc: 'State-of-the-art facilities', image: premiumCourtImg },
-            { title: 'Professional Coaching', desc: 'Available for all skill levels', image: coachingImg },
-            { title: 'Equipment Rental', desc: 'Rackets & balls included', image: equipmentImg },
-            { title: 'Flexible Booking', desc: 'Book online via Playtomic', image: courtsImg },
+            {
+              title: '3 Premium Courts',
+              desc: 'State-of-the-art facilities',
+              image: premiumCourtImg,
+              more: 'Each court features cushioned flooring, pro-grade nets, LED lighting, and privacy fencing for uninterrupted play.'
+            },
+            {
+              title: 'Professional Coaching',
+              desc: 'Available for all skill levels',
+              image: coachingImg,
+              more: 'Our certified coaches offer one-on-one and group lessons—perfect for beginners and tournament prep.'
+            },
+            {
+              title: 'Equipment Rental',
+              desc: 'Rackets & balls included',
+              image: equipmentImg,
+              more: 'High-quality rackets and extra balls are supplied; bring your own gear if you prefer.'
+            },
+            {
+              title: 'Flexible Booking',
+              desc: 'Book online via Playtomic',
+              image: courtsImg,
+              more: 'Choose hourly slots or recurring reservations; cancellations are free up to 12 hours before play.'
+            },
           ].map((item, idx) => (
-            <Card key={idx} title={item.title} description={item.desc} image={item.image} />
+            <Card
+              key={idx}
+              title={item.title}
+              description={item.desc}
+              image={item.image}
+              backContent={<p>{item.more}</p>}
+            />
           ))}
         </div>
         <div className="text-align-center mt-6">

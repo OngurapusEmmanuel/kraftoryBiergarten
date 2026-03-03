@@ -84,3 +84,17 @@
   justify-content: center;
 
 }
+
+/* pinned when scrolling past the hero section */
+.hero-buttons.floating {
+  position: fixed;
+  top: 4rem; /* sits just below header */
+  left: 0;
+  right: 0;
+  padding: 0.5rem 1rem;
+  background: rgba(0,0,0,0.6);
+  z-index: 60;
+  justify-content: center;
+  pointer-events: auto;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}

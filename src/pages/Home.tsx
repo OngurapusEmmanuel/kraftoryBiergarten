@@ -16,7 +16,10 @@ import tiramisu from '../assets/tiramisu.jpg';
 
 export default function Home() {
   useEffect(() => {
-    // useSEO is a regular function, not a React Hook — no eslint-disable needed.
+    // useSEO is a regular function, not a React Hook. eslint still thinks
+    // it looks like a hook due to the name, so disable the rule for this
+    // specific call.
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useSEO({
       title: 'Home',
       description: 'Kraftory Biergarten — Nairobi\'s finest craft beer bar, artisan restaurant, padel courts, and event venue. Located on Red Hill Road, open daily 6 AM–11 PM.',
