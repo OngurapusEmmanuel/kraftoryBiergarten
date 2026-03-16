@@ -33,6 +33,7 @@
 ========================= */
 .values-grid .card {
   padding: 40px;
+  min-height: 280px;
   border-radius: 18px;
   background: linear-gradient(145deg, #1c1c1c, #0f0f0f);
   box-shadow: 0 10px 35px rgba(0,0,0,0.5);

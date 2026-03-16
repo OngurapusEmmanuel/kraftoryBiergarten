@@ -55,6 +55,15 @@ export default function Home() {
         ]}
       />
 
+      {/* Brand Introduction */}
+      <Section title="Our Philosophy" subtitle="" bgType="light">
+        <div className="text-align-center">
+          <p style={{ fontSize: '1.1rem', lineHeight: '1.8', color: '#333', maxWidth: '700px', margin: '0 auto' }}>
+            Kraftory Biergarten is where refined leisure finds its home. Designed for the cultured, our space blends the art of dining and drinking with the elegance of sport.
+          </p>
+        </div>
+      </Section>
+
       {/* Experience Highlights */}
       <Section title="Why Choose Kraftory" subtitle="" bgType="light">
         <div className="grid-4">

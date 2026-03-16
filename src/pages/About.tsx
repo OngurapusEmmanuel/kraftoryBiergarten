@@ -30,22 +30,22 @@ export default function About() {
 
   const team = [
     {
-      name: 'Sarah Kipchoge',
-      role: 'Founder & CEO',
+      name: 'Deval Modi',
+      role: 'Director',
       icon: '👩‍💼',
       message:
         '"Kraftory was built on a dream — that Nairobi deserves a place where great people meet great beer. Every day I wake up grateful to see that dream alive. Welcome to our home."',
     },
     {
-      name: 'James Mwangi',
+      name: 'Chef Alex',
       role: 'Head Chef',
       icon: '👨‍🍳',
       message:
         '"Food is my love language. I pour every bit of craft into every plate — from the sourdough we bake at dawn to the salmon we plate at sunset. Come hungry, leave happy."',
     },
     {
-      name: 'Grace Omondi',
-      role: 'Community Manager',
+      name: 'Mr. Cosmas Egwa',
+      role: 'General Manager',
       icon: '👩‍💼',
       message:
         '"My job is to make sure you feel at home the moment you walk through our gates. The energy here is real — built by incredible people who keep coming back. You\'re one of us now."',
