@@ -6,6 +6,7 @@ interface CardProps {
   title: string;
   description: string;
   image?: string; // ✅ NEW
+  backImage?: string; // background image when flipped
   backContent?: React.ReactNode; // extra info for flip side
   children?: React.ReactNode;
 }
@@ -15,6 +16,7 @@ export default function Card({
   title,
   description,
   image,
+  backImage,
   backContent,
   children
 }: CardProps) {
@@ -26,6 +28,10 @@ export default function Card({
   };
 
   const hasBack = Boolean(backContent);
+
+  const backStyle = backImage
+    ? { backgroundImage: `url(${backImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+    : {};
 
   return (
     <div
@@ -53,7 +59,8 @@ export default function Card({
         </div>
 
         {hasBack && (
-          <div className="card-back">
+          <div className={`card-back ${backImage ? 'card-back-with-image' : ''}`} style={backStyle}>
+            {backImage && <div className="card-overlay" />}
             <div className="card-content">
               {backContent}
             </div>

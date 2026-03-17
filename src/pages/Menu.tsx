@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import Layout from '../layouts/Layout';
 import Hero from '../components/Hero';
 import Section from '../components/Section';
-import Tabs from '../components/Tabs';
 import MenuItem from '../components/MenuItem';
 import { useSEO } from '../utils/useSEO';
 
@@ -12,7 +11,7 @@ export default function Menu() {
       title: 'Menu',
       description: 'Browse Kraftory Biergarten\'s full menu featuring craft beer, German-inspired cuisine, artisan bakery items, signature cocktails, and more.',
       keywords: 'menu, food, craft beer, cocktails, bakery, Nairobi',
-      canonical: 'https://kraftory.com/menu',
+
       schema: {
         '@context': 'https://schema.org',
         '@type': 'WebPage',

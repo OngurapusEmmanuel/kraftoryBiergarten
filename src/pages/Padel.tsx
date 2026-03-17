@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import './Padel.css';
+import './Padel.css'
 import Layout from '../layouts/Layout';
 import Hero from '../components/Hero';
 import Section from '../components/Section';
@@ -9,6 +9,12 @@ import premiumCourtImg from '../assets/padel images/premium court.jpg';
 import coachingImg from '../assets/padel images/coach.jpg';
 import equipmentImg from '../assets/padel images/equipment.jpg';
 import courtsImg from '../assets/padel images/courts.jpg';
+
+// Back-face images for flipped cards
+import courtBackImg from '../assets/padel images/DSC03405.jpg';
+import coachingBackImg from '../assets/padel images/IMG-20251003-WA0042.jpg';
+import equipmentBackImg from '../assets/padel images/DSC03538.jpg';
+import bookingBackImg from '../assets/padel images/padel.jpg';
 
 export default function PadelEvents() {
   useEffect(() => {
@@ -59,25 +65,51 @@ export default function PadelEvents() {
               title: '3 Premium Courts',
               desc: 'State-of-the-art facilities',
               image: premiumCourtImg,
-              more: 'Each court features cushioned flooring, pro-grade nets, LED lighting, and privacy fencing for uninterrupted play.'
+              backImage: courtBackImg,
+              backContent: (
+                <>
+                  <h4 className="mb-2">Court Rental Pricing</h4>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+                    <tbody>
+                      {[
+                        { time: 'Morning (6 AM – 12 PM)', rate: 'KES 2,000/hr', voucher: 'N/A' },
+                        { time: 'Afternoon (12 PM – 5 PM)', rate: 'KES 4,000/hr', voucher: 'KES 1,000 (1 hr) / KES 1,500 (1.5 hr)' },
+                        { time: 'Evening (5 PM – 10 PM)', rate: 'KES 4,000/hr', voucher: 'KES 1,000 (1 hr) / KES 1,500 (1.5 hr)' },
+                      ].map((row, idx) => (
+                        <tr key={idx} style={{ borderBottom: '1px solid var(--craft-amber)' }}>
+                          <td style={{ padding: '0.4rem 0.25rem', textAlign: 'left' }}>{row.time}</td>
+                          <td style={{ padding: '0.4rem 0.25rem', fontWeight: 700 }}>{row.rate}</td>
+                          <td style={{ padding: '0.4rem 0.25rem', color: 'var(--forest-green)', fontWeight: 700 }}>{row.voucher}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <p style={{ marginTop: '0.75rem', fontSize: '0.85rem' }}>
+                    Book via Playtomic for real-time availability — and earn a F&B voucher with every court booking.
+                  </p>
+                </>
+              ),
             },
             {
               title: 'Professional Coaching',
               desc: 'Available for all skill levels',
               image: coachingImg,
-              more: 'Our certified coaches offer one-on-one and group lessons—perfect for beginners and tournament prep.'
+              backImage: coachingBackImg,
+              backContent: <p>Our certified coaches offer one-on-one and group lessons—perfect for beginners and tournament prep.</p>,
             },
             {
               title: 'Equipment Rental',
               desc: 'Rackets & balls included',
               image: equipmentImg,
-              more: 'High-quality rackets and extra balls are supplied; bring your own gear if you prefer.'
+              backImage: equipmentBackImg,
+              backContent: <p>High-quality rackets and extra balls are supplied; bring your own gear if you prefer.</p>,
             },
             {
               title: 'Flexible Booking',
               desc: 'Book online via Playtomic',
               image: courtsImg,
-              more: 'Choose hourly slots or recurring reservations; cancellations are free up to 12 hours before play.'
+              backImage: bookingBackImg,
+              backContent: <p>Choose hourly slots or recurring reservations; cancellations are free up to 12 hours before play.</p>,
             },
           ].map((item, idx) => (
             <Card
@@ -85,7 +117,8 @@ export default function PadelEvents() {
               title={item.title}
               description={item.desc}
               image={item.image}
-              backContent={<p>{item.more}</p>}
+              backImage={item.backImage}
+              backContent={item.backContent}
             />
           ))}
         </div>
@@ -115,37 +148,8 @@ export default function PadelEvents() {
           </div>
       </Section>
 
-      <Section title="Court Rental Pricing" subtitle="" bgType="light">
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center' }}>
-            <thead>
-              <tr style={{ borderBottom: '2px solid var(--craft-amber)', background: 'var(--charcoal)', color: 'var(--off-white)' }}>
-                <th style={{ padding: '1rem', fontWeight: 'bold' }}>Time Slot</th>
-                <th style={{ padding: '1rem', fontWeight: 'bold' }}>Rate</th>
-                <th style={{ padding: '1rem', fontWeight: 'bold' }}>F&amp;B Voucher</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { time: 'Morning (6 AM – 12 PM)', rate: 'KES 2,000/hr', voucher: 'N/A' },
-                { time: 'Afternoon (12 PM – 5 PM)', rate: 'KES 4,000/hr', voucher: 'KES 1,000 (1 hr) / KES 1,500 (1.5 hr)' },
-                { time: 'Evening (5 PM – 10 PM)', rate: 'KES 4,000/hr', voucher: 'KES 1,000 (1 hr) / KES 1,500 (1.5 hr)' },
-              ].map((row, idx) => (
-                <tr key={idx} style={{ borderBottom: '1px solid var(--craft-amber)' }}>
-                  <td style={{ padding: '1rem' }}>{row.time}</td>
-                  <td style={{ padding: '1rem', color: 'var(--craft-amber)', fontWeight: 'bold' }}>{row.rate}</td>
-                  <td style={{ padding: '1rem', color: 'var(--forest-green)', fontWeight: 'bold', fontSize: '0.9rem' }}>{row.voucher}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          
-        </div>
-      </Section>
-
       <Section title="Upcoming Events" subtitle="" bgType="dark">
-        <div className="grid-3" id='eventscard'>
+        <div className="grid-2" id='eventscard'>
           {events.map((event, idx) => (
             <Card
               key={idx}

@@ -44,6 +44,20 @@ VOUCHER SCROLL TICKER
   animation: scrollTicker 40s linear infinite;
 
 }
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding-bottom: 20px;
+  
+}
+#eventscard , .grid-2 {
+  margin-top: 20px;
+  height: fit-content;
+  max-height: fit-content;
+  padding: 20px;
+  text-align: center;
+}
 
 
 @keyframes scrollTicker {

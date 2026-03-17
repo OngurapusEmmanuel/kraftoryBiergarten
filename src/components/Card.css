@@ -52,6 +52,11 @@
   background: rgba(255,255,255,0.95);
 }
 
+/* when back has image, make text white for visibility */
+.card-back-with-image {
+  color: white;
+}
+
 
 /* IMAGE MODE */
 
