@@ -100,6 +100,19 @@ export default function PadelEvents() {
             Book a Court →
           </a>
         </div>
+        {/* Scrolling Voucher Banner */}
+          <div className="voucher-ticker">
+            <div className="voucher-track">
+              Kraftory Biergarten and Padel is the perfect place to play, relax, and connect!
+              &nbsp;&nbsp;•&nbsp;&nbsp;
+              Get KSh 1,000 F&amp;B voucher for 1-hour bookings
+              &nbsp;&nbsp;•&nbsp;&nbsp;
+              Get KSh 1,500 voucher for 1.5-hour bookings
+              &nbsp;&nbsp;•&nbsp;&nbsp;
+              Voucher redeemable at the Biergarten restaurant on food &amp; drinks
+              &nbsp;&nbsp;•&nbsp;&nbsp;
+            </div>
+          </div>
       </Section>
 
       <Section title="Court Rental Pricing" subtitle="" bgType="light">
@@ -114,7 +127,7 @@ export default function PadelEvents() {
             </thead>
             <tbody>
               {[
-                { time: 'Morning (6 AM – 12 PM)', rate: 'KES 4,000/hr', voucher: 'KES 1,000 (1 hr) / KES 1,500 (1.5 hr)' },
+                { time: 'Morning (6 AM – 12 PM)', rate: 'KES 2,000/hr', voucher: 'N/A' },
                 { time: 'Afternoon (12 PM – 5 PM)', rate: 'KES 4,000/hr', voucher: 'KES 1,000 (1 hr) / KES 1,500 (1.5 hr)' },
                 { time: 'Evening (5 PM – 10 PM)', rate: 'KES 4,000/hr', voucher: 'KES 1,000 (1 hr) / KES 1,500 (1.5 hr)' },
               ].map((row, idx) => (
@@ -127,24 +140,12 @@ export default function PadelEvents() {
             </tbody>
           </table>
 
-          {/* Scrolling Voucher Banner */}
-          <div className="voucher-ticker">
-            <div className="voucher-track">
-              Kraftory Biergarten and Padel is the perfect place to play, relax, and connect!
-              &nbsp;&nbsp;•&nbsp;&nbsp;
-              Get KSh 1,000 F&amp;B voucher for 1-hour bookings
-              &nbsp;&nbsp;•&nbsp;&nbsp;
-              Get KSh 1,500 voucher for 1.5-hour bookings
-              &nbsp;&nbsp;•&nbsp;&nbsp;
-              Voucher redeemable at the Biergarten restaurant on food &amp; drinks
-              &nbsp;&nbsp;•&nbsp;&nbsp;
-            </div>
-          </div>
+          
         </div>
       </Section>
 
       <Section title="Upcoming Events" subtitle="" bgType="dark">
-        <div className="grid-3">
+        <div className="grid-3" id='eventscard'>
           {events.map((event, idx) => (
             <Card
               key={idx}

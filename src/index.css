@@ -256,6 +256,9 @@ textarea {
   resize: none;
   min-height: 120px;
 }
+#eventscard{
+  min-height: auto;
+}
 
 /* Header */
 header {

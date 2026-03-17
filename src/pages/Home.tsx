@@ -7,12 +7,12 @@ import Card from '../components/Card';
 import MenuItem from '../components/MenuItem';
 import { useSEO, restaurantSchema } from '../utils/useSEO';
 import taps from '../assets/TAPS.jpg';
-import bakery from '../assets/logo bw.jpeg';
 import padel from '../assets/padel images/padel.jpg';
 import conference from '../assets/conference.jpg';
 import salmon from '../assets/salmon.jpg';
 import beer from '../assets/beer.avif';
 import tiramisu from '../assets/tiramisu.jpg';
+import bakery from '../assets/bakery.webp'
 
 export default function Home() {
   useEffect(() => {
