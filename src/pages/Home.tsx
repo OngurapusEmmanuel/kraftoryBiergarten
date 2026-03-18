@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../layouts/Layout';
 import Hero from '../components/Hero';
+import ExternalLink from '../components/ExternalLink';
 import Section from '../components/Section';
 import Card from '../components/Card';
 import MenuItem from '../components/MenuItem';
@@ -81,9 +82,9 @@ export default function Home() {
           ))}
         </div>
         <div className="text-align-center mt-6">
-          <a href="https://kraftory-biergarten.ubuntu.click/" className="btn btn-primary">
+          <ExternalLink href="https://kraftory-biergarten.ubuntu.click/" className="btn btn-primary">
             Explore Full Menu
-          </a>
+          </ExternalLink>
         </div>
       </Section>
 

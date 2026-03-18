@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Layout from '../layouts/Layout';
 import Hero from '../components/Hero';
+import ExternalLink from '../components/ExternalLink';
 import Section from '../components/Section';
 import MenuItem from '../components/MenuItem';
 import { useSEO } from '../utils/useSEO';

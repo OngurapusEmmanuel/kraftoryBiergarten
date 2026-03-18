@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import ExternalLink from './ExternalLink';
 import './Hero.css';
 
 interface HeroProps {
@@ -30,13 +31,13 @@ export default function Hero({ title, subtitle, buttons }: HeroProps) {
         {buttons && buttons.length > 0 && (
           <div className={"hero-buttons" + (floating ? " floating" : "")}>
             {buttons.map((btn, idx) => (
-              <a
+              <ExternalLink
                 key={idx}
                 href={btn.url}
                 className={btn.primary ? 'btn btn-primary' : 'btn btn-outline'}
               >
                 {btn.label}
-              </a>
+              </ExternalLink>
             ))}
           </div>
         )}

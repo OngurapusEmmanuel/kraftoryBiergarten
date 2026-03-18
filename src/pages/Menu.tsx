@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Layout from '../layouts/Layout';
 import Hero from '../components/Hero';
+import ExternalLink from '../components/ExternalLink';
 import Section from '../components/Section';
 import MenuItem from '../components/MenuItem';
 import { useSEO } from '../utils/useSEO';
@@ -43,9 +44,12 @@ export default function Menu() {
           ))}
         </div>
         <div className="text-align-center mt-6">
-          <a href="https://kraftory-biergarten.ubuntu.click/menu.html?menuId=d5e8eae0-cc8c-4bd2-9d0d-12fcad432180&title=Kraftory%20Food%20Menu" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+          <ExternalLink
+            href="https://kraftory-biergarten.ubuntu.click/menu.html?menuId=d5e8eae0-cc8c-4bd2-9d0d-12fcad432180&title=Kraftory%20Food%20Menu"
+            className="btn btn-primary"
+          >
             View Full Food Menu
-          </a>
+          </ExternalLink>
         </div>
       </Section>
 

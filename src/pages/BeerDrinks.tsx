@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import Layout from '../layouts/Layout';
 import Hero from '../components/Hero';
+import ExternalLink from '../components/ExternalLink';
 import Section from '../components/Section';
 import MenuItem from '../components/MenuItem';
 import { useSEO } from '../utils/useSEO';
@@ -48,14 +49,12 @@ export default function BeerDrinks() {
             Monday – Friday exclusive deals on our premium selection.
           </p>
           {/* BUG FIX: Was a dead <button>. Now links to the EatApp reservation system. */}
-          <a
+          <ExternalLink
             href="https://eatapp.co/reserve/kraftory-biergarten-red-hill-rd-nairobi"
-            target="_blank"
-            rel="noopener noreferrer"
             className="btn btn-primary"
           >
             Reserve Your Table
-          </a>
+          </ExternalLink>
         </div>
       </Section>
 
@@ -66,14 +65,12 @@ export default function BeerDrinks() {
           ))}
         </div>
         <div className="text-align-center mt-6">
-          <a
+          <ExternalLink
             href="https://kraftory-biergarten.ubuntu.click/menu.html?menuId=b0a494f4-7f0f-42dc-8e09-3dcee962fd6d&title=Kraftory%20Drinks%20Menu"
-            target="_blank"
-            rel="noopener noreferrer"
             className="btn btn-primary"
           >
             View Full Drinks Menu
-          </a>
+          </ExternalLink>
         </div>
       </Section>
     </Layout>
